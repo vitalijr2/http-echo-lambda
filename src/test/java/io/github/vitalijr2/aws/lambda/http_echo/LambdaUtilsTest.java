@@ -41,7 +41,7 @@ class LambdaUtilsTest {
     assertAll("Return HTTP 200 with the text content type and not empty body",
         () -> assertEquals(200, responseEvent.getStatusCode(), "HTTP status code"),
         () -> assertThat("Content type", responseEvent.getHeaders(),
-            hasEntry("Content-Type", "text/plain")),
+            hasEntry("Content-Type", "text/html")),
         () -> assertEquals("OK", responseEvent.getBody(), "Response body"));
   }
 

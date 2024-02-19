@@ -17,7 +17,7 @@ package io.github.vitalijr2.aws.lambda.http_echo;
 
 import static java.util.Collections.singletonMap;
 
-import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
+import com.amazonaws.services.lambda.runtime.events.APIGatewayV2HTTPResponse;
 import org.jetbrains.annotations.NotNull;
 
 public class LambdaUtils {
@@ -27,7 +27,7 @@ public class LambdaUtils {
   private static final String CONTENT_TYPE = "Content-Type";
   private static final int HTTP_OK = 200;
   private static final String OK = "OK";
-  private static final String TEXT_PLAIN = "text/plain";
+  private static final String TEXT_HTML = "text/html";
 
   private LambdaUtils() {
   }
@@ -40,13 +40,22 @@ public class LambdaUtils {
    * @return Gateway response that wraps body.
    */
   @NotNull
-  public static APIGatewayProxyResponseEvent getResponseEvent(@NotNull Object body) {
-    var responseEvent = new APIGatewayProxyResponseEvent();
+  public static APIGatewayV2HTTPResponse getResponseEvent(@NotNull Object body) {
+    var responseEvent = new APIGatewayV2HTTPResponse();
 
     responseEvent.setBody(body.toString());
     responseEvent.setHeaders(singletonMap(CONTENT_TYPE, APPLICATION_JSON));
     responseEvent.setIsBase64Encoded(false);
     responseEvent.setStatusCode(HTTP_OK);
+
+    return responseEvent;
+  }
+
+  @NotNull
+  public static APIGatewayV2HTTPResponse responseOK(String body) {
+    var responseEvent = getResponseEvent(body);
+
+    responseEvent.setHeaders(singletonMap(CONTENT_TYPE, TEXT_HTML));
 
     return responseEvent;
   }
@@ -57,12 +66,8 @@ public class LambdaUtils {
    * @return Gateway &quot;OK&quot; response
    */
   @NotNull
-  public static APIGatewayProxyResponseEvent responseOK() {
-    var responseEvent = getResponseEvent(OK);
-
-    responseEvent.setHeaders(singletonMap(CONTENT_TYPE, TEXT_PLAIN));
-
-    return responseEvent;
+  public static APIGatewayV2HTTPResponse responseOK() {
+    return responseOK(OK);
   }
 
 }
