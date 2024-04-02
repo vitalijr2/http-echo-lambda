@@ -382,7 +382,7 @@
     <java.release>11</java.release>
     <junit-jupiter.version>5.10.2</junit-jupiter.version>
     <json.version>20240303</json.version>
-    <mockito.version>5.10.0</mockito.version>
+    <mockito.version>5.11.0</mockito.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
  </properties>
   <url>https://github.com/vitalijr2/http-echo-lambda</url>
