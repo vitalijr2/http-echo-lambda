@@ -12,8 +12,9 @@ quick and convenient way to validate the information sent from your client.
 
 ## How to Use
 
-Send your HTTP or REST requests to the provided service endpoint, see https://cutt.ly/http-echo.
-Receive a detailed response containing all the request headers and body.
+Send your HTTP or REST requests to the provided service endpoint,
+see https://cutt.ly/http-echo-faas. Receive a detailed response containing all the request headers
+and body.
 
 This service is invaluable for debugging, testing, and ensuring the accuracy of your client's
 interactions with APIs or web services.
